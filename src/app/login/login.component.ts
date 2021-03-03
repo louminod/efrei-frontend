@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Login} from './login';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,9 @@ export class LoginComponent {
 
   login = new Login();
 
-  submit() {
-    window.alert(`email: '${this.login.email}', password: '${this.login.password}'`);
+  constructor (private router: Router) {}
+
+  async submit () {
+    await this.router.navigateByUrl('/profile');
   }
 }

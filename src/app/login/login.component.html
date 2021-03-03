@@ -2,11 +2,11 @@
   <form #form="ngForm">
     <mat-form-field appearance="fill">
       <mat-label>Email</mat-label>
-      <input matInput type="text" name="email" placeholder="Email" [(ngModel)]="login.email" required>
+      <input matInput type="email" name="email" placeholder="Email" [(ngModel)]="login.email" required>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Password</mat-label>
-      <input matInput type="text" name="password" placeholder="Password" [(ngModel)]="login.password" required>
+      <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="login.password" required>
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="submit()">Submit</button>
   </form>

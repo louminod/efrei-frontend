@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Login} from './login';
 import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,18 @@ export class LoginComponent {
 
   login = new Login();
 
-  constructor (private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {
+  }
 
-  async submit () {
-    await this.router.navigateByUrl('/profile');
+  async submit() {
+    try {
+      const headers = {'content-type': 'application/json'};
+      const body = JSON.stringify(this.login);
+      await this.http.post('http://localhost:8080/auth/login', body, {'headers': headers}).toPromise();
+      await this.router.navigateByUrl('/profile');
+    } catch (error) {
+      window.alert(error.error.messages[0]);
+    }
+
   }
 }

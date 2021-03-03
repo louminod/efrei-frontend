@@ -9,8 +9,8 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
-  login = new Login();
+  error: String = "";
+  login: Login = new Login();
 
   constructor(private router: Router, private http: HttpClient) {
   }
@@ -21,9 +21,8 @@ export class LoginComponent {
       const body = JSON.stringify(this.login);
       await this.http.post('http://localhost:8080/auth/login', body, {'headers': headers}).toPromise();
       await this.router.navigateByUrl('/profile');
-    } catch (error) {
-      window.alert(error.error.messages[0]);
+    } catch (e) {
+      this.error = e.error.messages[0];
     }
-
   }
 }

@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import User from "../../dist-typings/models/user";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-navigation',
@@ -6,5 +8,9 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
+  me: User;
 
+  constructor(activatedRoute: ActivatedRoute) {
+    this.me = activatedRoute.snapshot.data.me;
+  }
 }

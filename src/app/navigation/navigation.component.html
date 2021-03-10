@@ -1,6 +1,7 @@
 <mat-toolbar color="primary">
   <span routerLink="/" class="nav-title">Home</span>
   <span class="nav-spacer"></span>
-  <span routerLink="/login"  class="nav-title">Login</span>
-  <span routerLink="/profile"  class="nav-title">Profile</span>
+  <span routerLink="/login"  class="nav-title" *ngIf="!me">Login</span>
+  <span routerLink="/profile"  class="nav-title" *ngIf="me">Profile</span>
+  <span class="nav-title" *ngIf="me">{{me.firstname}}</span>
 </mat-toolbar>

@@ -19,7 +19,6 @@ export class LoginComponent {
 
   async submit() {
     try {
-      const headers = {'content-type': 'application/json'};
       const credentials: Auth$LoginParams = {email: this.login.email, password: this.login.password};
       await this.meService.login(credentials);
       await this.router.navigateByUrl('/profile');

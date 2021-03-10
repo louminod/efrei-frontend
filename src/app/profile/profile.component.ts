@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import User from "../../dist-typings/models/user";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  me: User;
+
+  constructor(activatedRoute: ActivatedRoute) {
+    this.me = activatedRoute.snapshot.data.me;
+  }
 
   ngOnInit(): void {
   }

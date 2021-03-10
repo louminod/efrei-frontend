@@ -3,4 +3,5 @@
   <span class="nav-spacer"></span>
   <span routerLink="/login"  class="nav-title" *ngIf="!me">Login</span>
   <span routerLink="/profile"  class="nav-title" *ngIf="me">Profile</span>
+  <button (click)="logout()" class="logout-button" *ngIf="me"><fa-icon [icon]="faDoorOpen"></fa-icon></button>
 </mat-toolbar>

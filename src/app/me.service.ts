@@ -35,7 +35,11 @@ export class MeService {
   }
 
   async logout() {
-    await this.http.delete('https://backend.thomas-veillard.fr/auth/logout', {withCredentials: true}).toPromise();
+    const headers = {'content-type': 'application/json'};
+    await this.http.delete('https://backend.thomas-veillard.fr/auth/logout', {
+      'headers': headers,
+      withCredentials: true
+    }).toPromise();
     this.me = undefined;
   }
 }

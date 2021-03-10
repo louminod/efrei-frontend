@@ -10,22 +10,23 @@ export class MeService {
 
   private me: User | undefined;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   async resolve() {
     if (this.me === undefined) {
-      this.me = await this.httpClient.get('https://backend.thomas-veillard.fr/api/users/me').toPromise() as User;
+      this.me = await this.http.get('https://backend.thomas-veillard.fr/api/users/me').toPromise() as User;
     }
     return this.me;
   }
 
   async login(credentials: Auth$LoginParams) {
-    await this.httpClient.post('https://backend.thomas-veillard.fr/auth/login', credentials).toPromise();
+    const headers = {'content-type': 'application/json'};
+    await this.http.post('https://backend.thomas-veillard.fr/auth/login', credentials, {'headers': headers}).toPromise();
   }
 
   async logout() {
-    await this.httpClient.delete('https://backend.thomas-veillard.fr/auth/logout').toPromise();
+    await this.http.delete('https://backend.thomas-veillard.fr/auth/logout').toPromise();
     this.me = undefined;
   }
 }
